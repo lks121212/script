@@ -1,129 +1,321 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Jogos</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <style>
-        /* Reset & base */
-        html, body {
-            height: 100%;
-            width: 100%;
-            margin: 0;
-            padding: 0;
-            font-family: Arial, Helvetica, sans-serif;
-            background: #181c24;
-            color: #e6e6e6;
-        }
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title>Jogos - Documentação</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  /* Reset */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
 
-        .cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            padding: 20px;
-        }
+  body, html {
+    margin: 0;
+    height: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #181c24;
+    color: #e6e6e6;
+  }
 
-        .card {
-            background: #242831;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            overflow: hidden;
-            transition: transform 0.2s ease;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            padding: 20px;
-        }
+  a {
+    color: #0091ff;
+    text-decoration: none;
+  }
+  a:hover, a:focus {
+    text-decoration: underline;
+  }
 
-        .card:hover, .card:focus-within {
-            transform: scale(1.01);
-            outline: none;
-        }
+  /* Layout */
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #202833;
+    border-bottom: 1px solid #333b4d;
+    padding: 1rem 2rem;
+    z-index: 1000;
+  }
+  header h1 {
+    margin: 0;
+    font-weight: 700;
+    color: #0091ff;
+    font-size: 1.8rem;
+  }
+  header p {
+    margin: 0.25rem 0 0;
+    font-weight: 400;
+    font-size: 1rem;
+    color: #a0bfff;
+  }
 
-        h1 {
-            margin: 0 0 12px 0;
-            font-size: 1.6rem;
-            color: #f0a500;
-        }
+  .container {
+    display: flex;
+    height: 100vh;
+    padding-top: 100px; /* for fixed header */
+  }
 
-        pre {
-            background: #1e222a;
-            padding: 15px;
-            border-radius: 6px;
-            overflow-x: auto;
-            flex-grow: 1;
-            margin: 0 0 12px 0;
-            font-size: 1rem;
-            line-height: 1.4;
-            color: #c5c8c6;
-        }
+  nav.sidebar {
+    width: 260px;
+    background-color: #202833;
+    border-right: 1px solid #333b4d;
+    padding: 2rem 1.5rem;
+    overflow-y: auto;
+  }
 
-        button.copy-btn {
-            align-self: flex-start;
-            background-color: #f0a500;
-            color: #181c24;
-            border: none;
-            border-radius: 4px;
-            padding: 8px 14px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            user-select: none;
-        }
+  nav.sidebar h2 {
+    margin-top: 0;
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: #0091ff;
+    margin-bottom: 1rem;
+  }
 
-        button.copy-btn:hover, button.copy-btn:focus {
-            background-color: #d18e00;
-            outline: none;
-        }
+  nav.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  nav.sidebar li + li {
+    margin-top: 1rem;
+  }
+  nav.sidebar a {
+    font-weight: 600;
+    font-size: 1rem;
+    display: inline-block;
+    padding: 0.25rem 0;
+    cursor: pointer;
+  }
+  nav.sidebar a.active {
+    color: #005bb5;
+    font-weight: 700;
+    text-decoration: underline;
+  }
 
-        button.copy-btn:active {
-            background-color: #b27600;
-        }
-    </style>
+  main.content {
+    flex-grow: 1;
+    padding: 2rem 3rem;
+    overflow-y: auto;
+  }
+
+  section.game {
+    display: none;
+    margin-bottom: 3.5rem;
+  }
+  section.game.active {
+    display: block;
+  }
+
+  section.game h2 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #0091ff;
+    border-bottom: 2px solid #0091ff;
+    padding-bottom: 0.3rem;
+  }
+
+  /* Code block */
+  pre {
+    background-color: #1e222a;
+    padding: 1.25rem 1.5rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    white-space: pre; /* no wrapping */
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #c5c8c6;
+    margin: 0 0 1rem;
+  }
+
+  /* Copy button */
+  button.copy-btn {
+    background-color: #0091ff;
+    color: #181c24;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 18px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.15s ease;
+    user-select: none;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    margin-bottom: 2rem;
+  }
+  button.copy-btn:hover,
+  button.copy-btn:focus {
+    background-color: #0074d9;
+    outline: 2px solid #0091ff;
+    outline-offset: 2px;
+  }
+  button.copy-btn:active {
+    background-color: #005bb5;
+    transform: scale(0.98);
+  }
+
+  /* Accessibility */
+  :focus-visible {
+    outline: 3px solid #0091ff;
+    outline-offset: 2px;
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .container {
+      flex-direction: column;
+      height: auto;
+      padding-top: 130px;
+    }
+    nav.sidebar {
+      width: 100%;
+      border-right: none;
+      border-bottom: 1px solid #333b4d;
+      padding: 1rem 2rem;
+      order: 2;
+    }
+    main.content {
+      padding: 2rem 2rem 3rem;
+      order: 1;
+    }
+  }
+
+  @media (max-width: 480px) {
+    header {
+      padding: 1rem;
+    }
+    main.content, nav.sidebar {
+      padding: 1rem;
+    }
+    button.copy-btn {
+      width: 100%;
+      padding: 12px;
+      font-size: 1rem;
+    }
+  }
+</style>
 </head>
 <body>
-    <main class="cards" role="list">
-        <article class="card" role="listitem" tabindex="0">
-            <h1>Roblox</h1>
-            <pre><code>flatpak --user remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+<header>
+  <h1>Documentação de Jogos</h1>
+  <p>Comandos para instalação e execução via Flatpak</p>
+</header>
+
+<div class="container">
+  <nav class="sidebar" aria-label="Navegação dos jogos">
+    <h2>Jogos</h2>
+    <ul>
+      <li><a href="#roblox" data-tab="roblox" class="active">Roblox</a></li>
+      <li><a href="#steam" data-tab="steam">Steam</a></li>
+      <li><a href="#minecraft" data-tab="minecraft">Minecraft</a></li>
+    </ul>
+  </nav>
+
+  <main class="content" role="main">
+    <section class="game active" id="roblox" tabindex="-1">
+      <h2>Roblox</h2>
+      <pre><code>flatpak --user remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 flatpak --user install flathub org.vinegarhq.Sober
-flatpak run org.vinegarhq.Sober</code></pre>
-            <button class="copy-btn" aria-label="Copiar código Roblox">Copiar</button>
-        </article>
+flatpak run org.vinegarhq.Sober
+</code></pre>
+      <button class="copy-btn" aria-label="Copiar código Roblox">Copiar</button>
+    </section>
 
-        <article class="card" role="listitem" tabindex="0">
-            <h1>Steam</h1>
-            <pre><code>flatpak --user remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+    <section class="game" id="steam" tabindex="-1">
+      <h2>Steam</h2>
+      <pre><code>flatpak --user remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 flatpak --user install flathub com.valvesoftware.Steam
-flatpak run com.valvesoftware.Steam</code></pre>
-            <button class="copy-btn" aria-label="Copiar código Steam">Copiar</button>
-        </article>
+flatpak run com.valvesoftware.Steam
+</code></pre>
+      <button class="copy-btn" aria-label="Copiar código Steam">Copiar</button>
+    </section>
 
-        <article class="card" role="listitem" tabindex="0">
-            <h1>Minecraft</h1>
-            <pre><code>#!/bin/bash</code></pre>
-            <button class="copy-btn" aria-label="Copiar código Minecraft">Copiar</button>
-        </article>
-    </main>
+    <section class="game" id="minecraft" tabindex="-1">
+      <h2>Minecraft</h2>
+      <pre><code>#!/bin/bash</code></pre>
+      <button class="copy-btn" aria-label="Copiar código Minecraft">Copiar</button>
+    </section>
+  </main>
+</div>
 
-    <script>
-        document.querySelectorAll('.copy-btn').forEach(button => {
-            button.addEventListener('click', () => {
-                const code = button.previousElementSibling.querySelector('code').innerText;
-                navigator.clipboard.writeText(code).then(() => {
-                    const originalText = button.textContent;
-                    button.textContent = 'Copiado!';
-                    button.disabled = true;
-                    setTimeout(() => {
-                        button.textContent = originalText;
-                        button.disabled = false;
-                    }, 1200);
-                }).catch(err => {
-                    alert('Falha ao copiar o texto: ' + err);
-                });
-            });
-        });
-    </script>
+<script>
+  // Clipboard copy with feedback & improved accessibility
+  document.querySelectorAll('.copy-btn').forEach(button => {
+    button.addEventListener('click', async () => {
+      const codeBlock = button.previousElementSibling.querySelector('code');
+      if (!codeBlock) return;
+
+      try {
+        await navigator.clipboard.writeText(codeBlock.innerText.trim());
+        const originalText = button.textContent;
+        button.textContent = 'Copiado!';
+        button.disabled = true;
+        setTimeout(() => {
+          button.textContent = originalText;
+          button.disabled = false;
+        }, 1400);
+      } catch (err) {
+        alert('Falha ao copiar o texto: ' + err);
+      }
+    });
+  });
+
+  // Tab switching logic
+  const tabs = document.querySelectorAll('nav.sidebar a');
+  const sections = document.querySelectorAll('main.content section.game');
+
+  function activateTab(tabName) {
+    // Update active class on tabs
+    tabs.forEach(tab => {
+      tab.classList.toggle('active', tab.dataset.tab === tabName);
+    });
+
+    // Show/hide sections
+    sections.forEach(section => {
+      section.classList.toggle('active', section.id === tabName);
+    });
+
+    // Update URL hash without page jump
+    history.replaceState(null, '', `#${tabName}`);
+
+    // Focus the visible section for accessibility
+    const activeSection = document.getElementById(tabName);
+    if (activeSection) {
+      activeSection.focus();
+    }
+  }
+
+  // Initialize based on URL hash or default to 'roblox'
+  function initTabs() {
+    let currentHash = window.location.hash.replace('#', '');
+    if (!currentHash || !document.getElementById(currentHash)) {
+      currentHash = 'roblox';
+    }
+    activateTab(currentHash);
+  }
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', e => {
+      e.preventDefault();
+      const tabName = tab.dataset.tab;
+      activateTab(tabName);
+    });
+  });
+
+  window.addEventListener('hashchange', () => {
+    const newHash = window.location.hash.replace('#', '');
+    if (document.getElementById(newHash)) {
+      activateTab(newHash);
+    }
+  });
+
+  // Run on page load
+  initTabs();
+</script>
+
 </body>
 </html>
