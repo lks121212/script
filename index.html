@@ -7,8 +7,44 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
     <script src='main.js'></script>
+    <title>Categorias de Jogos</title>
+    <link rel="stylesheet" href="index.css">
 </head>
 <body>
-    
+    <main>
+        <h1>Categorias</h1>
+        <div class="categories">
+            <section class="category-block">
+                <div class="category-header">
+                    <span class="category-title">Roblox</span>
+                    <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+                </div>
+                <pre><code class="category-code">print("Olá, Roblox!")</code></pre>
+            </section>
+            <section class="category-block">
+                <div class="category-header">
+                    <span class="category-title">Steam</span>
+                    <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+                </div>
+                <pre><code class="category-code">echo "Bem-vindo ao Steam!"</code></pre>
+            </section>
+            <section class="category-block">
+                <div class="category-header">
+                    <span class="category-title">Minecraft</span>
+                    <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+                </div>
+                <pre><code class="category-code">/give @p diamond 64</code></pre>
+            </section>
+            <!-- Adicione mais categorias abaixo facilmente -->
+        </div>
+    </main>
+    <script>
+    function copyCode(btn) {
+        const code = btn.closest('.category-block').querySelector('.category-code').innerText;
+        navigator.clipboard.writeText(code);
+        btn.textContent = 'Copiado!';
+        setTimeout(() => btn.textContent = 'Copiar', 1200);
+    }
+    </script>
 </body>
 </html>
