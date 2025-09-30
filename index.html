@@ -10,34 +10,21 @@
     <link rel="stylesheet" type='text/css' media='screen' href="index.css">
 </head>
 <body>
-    <main>
-        <div class="categories-grid">
-            <section class="category-card">
-                <div class="category-header">
-                    <span class="category-title">Roblox</span>
-                    <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
-                </div>
-                <pre><code class="category-code">#!/bin/bash
+    <div class="cards">
+        <div class="card">
+            <h1>Roblox</h1>
+            <pre><code>#!/bin/bash</code></pre>
         </div>
-            </section>
-            <section class="category-card">
-                <div class="category-header">
-                    <span class="category-title">Steam</span>
-                    <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
-                </div>
-                <pre><code class="category-code">#!/bin/bash
-    </main>
-            </section>
-            <section class="category-card">
-                <div class="category-header">
-                    <span class="category-title">Minecraft</span>
-                    <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
-                </div>
-                <pre><code class="category-code">#!/bin/bash
+        <div class="card">
+            <h1>Steam</h1>
+            <pre><code>#!/bin/bash</code></pre>
+        </div>
+        <div class="card">
+            <h1>Minecraft</h1>
+            <pre><code>#!/bin/bash</code></pre>
+        </div>
+    </div>
     <script>
-            </section>
-            <!-- Adicione mais cards facilmente duplicando o bloco acima -->
-        </div>
     function copyCode(btn) {
         const code = btn.closest('.category-block').querySelector('.category-code').innerText;
         navigator.clipboard.writeText(code);
