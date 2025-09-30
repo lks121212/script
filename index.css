@@ -1,23 +1,25 @@
 body {
 	font-family: Arial, Helvetica, sans-serif;
-	background: #f4f4f4;
+	background: #181c24;
 	margin: 0;
 	padding: 0;
+	color: #e6e6e6;
 }
 
 main {
 	max-width: 600px;
 	margin: 40px auto;
-	background: #fff;
+	background: #23283a;
 	border-radius: 10px;
-	box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+	box-shadow: 0 2px 16px rgba(0,0,0,0.25);
 	padding: 32px 24px;
 }
 
 h1 {
 	text-align: center;
-	color: #333;
+	color: #e6e6e6;
 	margin-bottom: 24px;
+	letter-spacing: 1px;
 }
 
 .categories {
@@ -27,11 +29,12 @@ h1 {
 }
 
 .category-block {
-	background: #e3eaff;
+	background: #23283a;
 	border-radius: 8px;
-	box-shadow: 0 1px 4px rgba(42,58,94,0.06);
+	box-shadow: 0 1px 8px rgba(0,0,0,0.18);
 	padding: 18px 18px 14px 18px;
 	position: relative;
+	border: 1px solid #2a3142;
 }
 
 .category-header {
@@ -44,11 +47,11 @@ h1 {
 .category-title {
 	font-size: 1.15rem;
 	font-weight: bold;
-	color: #2a3a5e;
+	color: #7ecfff;
 }
 
 .copy-btn {
-	background: #4f6bed;
+	background: #2d8cff;
 	color: #fff;
 	border: none;
 	border-radius: 4px;
@@ -57,15 +60,16 @@ h1 {
 	cursor: pointer;
 	transition: background 0.2s;
 	margin-left: 10px;
+	box-shadow: 0 1px 2px rgba(0,0,0,0.10);
 }
 .copy-btn:hover {
-	background: #2a3a5e;
+	background: #1a5fb4;
 }
 
 .category-code {
 	display: block;
-	background: #f7f9ff;
-	color: #2a3a5e;
+	background: #181c24;
+	color: #e6e6e6;
 	padding: 12px 10px;
 	border-radius: 5px;
 	font-size: 1rem;
@@ -73,6 +77,7 @@ h1 {
 	white-space: pre-wrap;
 	word-break: break-all;
 	margin: 0;
+	border: 1px solid #23283a;
 }
 body {
 	font-family: Arial, Helvetica, sans-serif;
