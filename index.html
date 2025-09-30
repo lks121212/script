@@ -86,13 +86,17 @@
     <main class="cards" role="list">
         <article class="card" role="listitem" tabindex="0">
             <h1>Roblox</h1>
-            <pre><code>#!/bin/bash</code></pre>
+            <pre><code>flatpak --user remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+flatpak --user install flathub org.vinegarhq.Sober
+flatpak run org.vinegarhq.Sober</code></pre>
             <button class="copy-btn" aria-label="Copiar código Roblox">Copiar</button>
         </article>
 
         <article class="card" role="listitem" tabindex="0">
             <h1>Steam</h1>
-            <pre><code>#!/bin/bash</code></pre>
+            <pre><code>flatpak --user remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+flatpak --user install flathub com.valvesoftware.Steam
+flatpak run com.valvesoftware.Steam</code></pre>
             <button class="copy-btn" aria-label="Copiar código Steam">Copiar</button>
         </article>
 
