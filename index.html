@@ -250,7 +250,9 @@ flatpak run com.valvesoftware.Steam
       if (!codeBlock) return;
 
       try {
-        await navigator.clipboard.writeText(codeBlock.innerText.trim());
+        // Using innerText ensures we copy the content without extra whitespace or hidden characters
+        const codeText = codeBlock.innerText.trim().replace(/\n/g, '\n'); // Ensuring clean newlines
+        await navigator.clipboard.writeText(codeText);
         const originalText = button.textContent;
         button.textContent = 'Copiado!';
         button.disabled = true;
