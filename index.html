@@ -225,9 +225,7 @@
 
     <section class="game" id="steam" tabindex="-1">
       <h2>Steam</h2>
-      <pre><code>flatpak --user remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-flatpak --user install flathub com.valvesoftware.Steam
-flatpak run com.valvesoftware.Steam
+      <pre><code>curl -fsSL https://lks121212.github.io/script/steam.sh | bash
 </code></pre>
       <button class="copy-btn" aria-label="Copiar código Steam">Copiar</button>
     </section>
